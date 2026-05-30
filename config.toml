@@ -1,0 +1,43 @@
+# Root-level Hugo config for tooling that expects config.toml in the repo root.
+# The canonical split configuration remains under config/_default/.
+baseURL = "https://signorini.cloud/"
+title = "Ivens Signorini"
+languageCode = "en"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+enableRobotsTXT = true
+disableKinds = ["RSS", "taxonomy", "term"]
+cleanDestinationDir = true
+disableAliases = true
+taxonomies = {}
+
+[outputs]
+  home = ["HTML"]
+  page = ["HTML"]
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[params]
+  description = "Senior Backend Engineer with 20+ years building distributed systems for fintech, SaaS, and blockchain. Go · Java · Kubernetes · AWS."
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    languageCode = "en-GB"
+    weight = 1
+
+  [languages.it]
+    languageName = "Italiano"
+    languageCode = "it-IT"
+    weight = 2
+
+  [languages.es]
+    languageName = "Español"
+    languageCode = "es-ES"
+    weight = 3
+
+  [languages.pt]
+    languageName = "Português"
+    languageCode = "pt-PT"
+    weight = 4

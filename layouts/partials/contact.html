@@ -1,0 +1,30 @@
+{{ $contact := site.Data.contact }}
+<section class="section-pad wrap contact" id="contact">
+  <div class="eyebrow reveal" style="justify-content:center;"><span class="num">06</span> / {{ T "contact_eyebrow" }}</div>
+  <div class="big reveal">{{ .Params.contact_headline | default "Let's talk." | safeHTML }}<br /><a href="mailto:{{ $contact.email }}">{{ $contact.email }}</a></div>
+  <p class="sub reveal d1">{{ .Params.contact_sub | default "Hiring for a Senior or Staff Backend role in London or remote across the UK? I'd be glad to hear about it." }}</p>
+  <div class="contact-actions reveal d1">
+    <a href="mailto:{{ $contact.email }}?subject=Backend%20role%20%E2%80%94%20let%27s%20talk" class="btn btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+      {{ T "email_me" }}
+    </a>
+    <a href="{{ $contact.cv_url | default "/Ivens-Signorini-CV.pdf" }}" class="btn btn-ghost" download>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      {{ T "download_cv" }}
+    </a>
+  </div>
+  <div class="contact-links reveal d2">
+    <a href="{{ $contact.linkedin }}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 9.5H5.67V18h2.67V9.5zM7 5.88A1.55 1.55 0 1 0 7 9a1.55 1.55 0 0 0 0-3.12zM18.34 18v-4.66c0-2.5-1.34-3.66-3.12-3.66a2.69 2.69 0 0 0-2.44 1.34V9.5h-2.67V18h2.67v-4.5c0-1.18.22-2.32 1.68-2.32s1.45 1.35 1.45 2.4V18h2.43z"/></svg>
+      linkedin.com/in/ivens-signorini
+    </a>
+    <a href="{{ $contact.github }}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05A9.4 9.4 0 0 1 12 6.85c.85 0 1.71.12 2.51.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+      github.com/ivensfernando
+    </a>
+    <a href="mailto:{{ $contact.email }}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+      {{ $contact.email }}
+    </a>
+  </div>
+</section>

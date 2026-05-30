@@ -1,0 +1,44 @@
+[get_in_touch]
+other = "Get in touch"
+
+[download_cv]
+other = "Download CV"
+
+[available_status]
+other = "Available for Senior / Staff Backend roles"
+
+[back_to_top]
+other = "Back to top"
+
+[language]
+other = "Language"
+
+[open_menu]
+other = "Open menu"
+
+[email_me]
+other = "Email me"
+
+[view_project]
+other = "View project"
+
+[about_eyebrow]
+other = "about"
+
+[stack_eyebrow]
+other = "stack"
+
+[experience_eyebrow]
+other = "experience"
+
+[building_eyebrow]
+other = "building now"
+
+[education_eyebrow]
+other = "education"
+
+[contact_eyebrow]
+other = "contact"
+
+[personal_project]
+other = "Personal project"

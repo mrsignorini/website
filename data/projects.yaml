@@ -1,0 +1,10 @@
+- name: NeverGoBlank
+  tagline: AI-powered interview-prep platform
+  description: A Go backend, a Wails desktop app, an MCP server wiring LLMs into a real workflow, and live LLM transcription. The full stack of decisions, from architecture to shipping — owned end to end.
+  tags:
+    - Go backend
+    - Wails desktop app
+    - MCP server
+    - LLM transcription
+  url: https://nevergoblank.com
+  url_label: nevergoblank.com

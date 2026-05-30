@@ -1,0 +1,24 @@
+{{ $page := . }}
+<div class="lang-toggle" role="group" aria-label="{{ T "language" }}">
+  {{ range site.Languages }}
+    {{ $lang := .Lang }}
+    {{ $target := "" }}
+    {{ if $page.IsHome }}
+      {{ $langSite := index (where site.Sites "Language.Lang" $lang) 0 }}
+      {{ if $langSite }}
+        {{ $target = $langSite.Home.RelPermalink }}
+      {{ end }}
+    {{ else }}
+      {{ $translations := where $page.AllTranslations "Lang" $lang }}
+      {{ if gt (len $translations) 0 }}
+        {{ $target = (index $translations 0).RelPermalink }}
+      {{ else if eq $page.Site.Language.Lang $lang }}
+        {{ $target = $page.RelPermalink }}
+      {{ end }}
+    {{ end }}
+    {{ if eq $target "" }}
+      {{ $target = printf "/%s/" $lang | relURL }}
+    {{ end }}
+    <a href="{{ $target }}" class="lang-btn{{ if eq $page.Site.Language.Lang $lang }} active{{ end }}">{{ upper $lang }}</a>
+  {{ end }}
+</div>

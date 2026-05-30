@@ -1,0 +1,18 @@
+<section class="section-pad wrap" id="experience">
+  <div class="eyebrow reveal"><span class="num">03</span> / {{ T "experience_eyebrow" }}</div>
+  <h2 class="section-title reveal">{{ .Params.experience_title | default "Two decades, shipping." }}</h2>
+  <div class="timeline">
+    {{ range $i, $job := site.Data.experience }}
+      <div class="job{{ if $job.current }} current{{ end }} reveal">
+        <div>
+          <div class="role-t">{{ $job.role }}</div>
+          <div class="co">{{ $job.company }}<span class="sep">·</span>{{ $job.location }}</div>
+        </div>
+        <div class="period">{{ $job.period }}</div>
+        <div class="stack-line">
+          {{ range $job.stack }}<span class="t">{{ . }}</span>{{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>

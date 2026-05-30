@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}" data-theme="dark">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{ partial "header.html" . }}
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ partial "tweaks.html" . }}
+  {{ $script := resources.Get "js/main.js" }}
+  {{ if eq hugo.Environment "development" }}
+    <script src="{{ $script.RelPermalink }}" defer></script>
+  {{ else }}
+    <script src="{{ ($script | minify | fingerprint).RelPermalink }}" defer></script>
+  {{ end }}
+</body>
+</html>

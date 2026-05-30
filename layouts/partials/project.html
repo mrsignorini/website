@@ -1,0 +1,29 @@
+{{ $project := index site.Data.projects 0 }}
+<section class="section-pad wrap" id="project">
+  <div class="eyebrow reveal"><span class="num">04</span> / {{ T "building_eyebrow" }}</div>
+  <div class="feature reveal">
+    <span class="badge"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;"></span> {{ T "personal_project" }}</span>
+    <h3>{{ $project.name }}</h3>
+    <div class="sub">{{ $project.tagline }}</div>
+    <p class="desc">{{ $project.description }}</p>
+    <div class="ptags">
+      {{ range $project.tags }}<span class="t">{{ . }}</span>{{ end }}
+    </div>
+    <a class="visit" href="{{ $project.url }}" target="_blank" rel="noopener">
+      {{ $project.url_label }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+  </div>
+
+  <div style="margin-top:64px;">
+    <div class="eyebrow reveal"><span class="num">05</span> / {{ T "education_eyebrow" }}</div>
+    <div class="edu-grid">
+      {{ range $i, $edu := site.Data.education }}
+        <div class="edu-card reveal{{ if gt $i 0 }} d1{{ end }}">
+          <div class="deg">{{ $edu.degree }}</div>
+          <div class="inst">{{ $edu.institution }}</div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+- role: Backend Engineer
+  company: Privorum BV
+  location: Remote
+  period: "2020 — Present"
+  current: true
+  stack:
+    - Go
+    - Java
+    - Kubernetes
+    - AWS
+
+- role: Backend Engineer (Contributor)
+  company: MDL Talent Hub
+  location: Netherlands
+  period: "2018 — 2022"
+  current: false
+  stack:
+    - Go
+    - Kubernetes
+    - Docker
+
+- role: Sr. Fullstack Developer
+  company: MINC Groep
+  location: Netherlands
+  period: "2018 — 2020"
+  current: false
+  stack:
+    - Java
+    - Spring
+    - React
+
+- role: Lead Software Developer
+  company: Comentarismo
+  location: Netherlands
+  period: "2016 — 2018"
+  current: false
+  stack:
+    - Go
+    - REST APIs
+
+- role: Lead Developer
+  company: Marisa Lojas Varejistas
+  location: Brazil
+  period: "2010 — 2016"
+  current: false
+  stack:
+    - Java
+    - Spring
+    - Distributed Systems
+
+- role: Sr. Java Developer
+  company: Banco Santander
+  location: Brazil
+  period: "2009 — 2010"
+  current: false
+  stack:
+    - Java
+    - Banking Systems
+
+- role: Earlier roles
+  company: Brazil
+  location: ""
+  period: "2005 — 2009"
+  current: false
+  stack:
+    - Java
+    - Enterprise Systems

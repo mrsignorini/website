@@ -1,0 +1,14 @@
+<section class="section-pad wrap" id="about">
+  <div class="eyebrow reveal"><span class="num">01</span> / {{ T "about_eyebrow" }}</div>
+  <h2 class="section-title reveal">{{ .Params.about_title | default "Software that's maintainable,<br />not just functional." | safeHTML }}</h2>
+  <div class="about-grid">
+    <div class="about-body reveal d1">
+      {{ .Params.about_body | safeHTML }}
+    </div>
+    <aside class="facts reveal d2">
+      {{ range site.Data.facts }}
+        <div class="fact"><span class="k">{{ .key }}</span><span class="v">{{ .value }}</span></div>
+      {{ end }}
+    </aside>
+  </div>
+</section>

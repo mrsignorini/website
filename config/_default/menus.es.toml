@@ -1,0 +1,39 @@
+[[main]]
+name = "sobre mí"
+identifier = "about"
+weight = 1
+[main.params]
+section = "about"
+idx = "01"
+
+[[main]]
+name = "stack"
+identifier = "stack"
+weight = 2
+[main.params]
+section = "stack"
+idx = "02"
+
+[[main]]
+name = "experiencia"
+identifier = "experience"
+weight = 3
+[main.params]
+section = "experience"
+idx = "03"
+
+[[main]]
+name = "proyectos"
+identifier = "project"
+weight = 4
+[main.params]
+section = "project"
+idx = "04"
+
+[[main]]
+name = "contacto"
+identifier = "contact"
+weight = 5
+[main.params]
+section = "contact"
+idx = "05"

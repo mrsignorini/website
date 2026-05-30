@@ -1,0 +1,17 @@
+<section class="section-pad wrap" id="stack">
+  <div class="eyebrow reveal"><span class="num">02</span> / {{ T "stack_eyebrow" }}</div>
+  <h2 class="section-title reveal">{{ .Params.stack_title | default "The tools I reach for." }}</h2>
+  <div class="stack-grid">
+    {{ range $i, $card := site.Data.stack }}
+      <div class="stack-card reveal{{ if eq (mod $i 2) 1 }} d1{{ end }}">
+        <div class="cat">
+          <span class="ico">{{ $card.icon | safeHTML }}</span>
+          {{ $card.category }}
+        </div>
+        <div class="tags">
+          {{ range $card.items }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</section>

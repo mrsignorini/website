@@ -1,0 +1,44 @@
+[get_in_touch]
+other = "Entrar em contacto"
+
+[download_cv]
+other = "Descarregar CV"
+
+[available_status]
+other = "Disponível para funções Senior / Staff Backend"
+
+[back_to_top]
+other = "Voltar ao topo"
+
+[language]
+other = "Idioma"
+
+[open_menu]
+other = "Abrir menu"
+
+[email_me]
+other = "Enviar email"
+
+[view_project]
+other = "Ver projeto"
+
+[about_eyebrow]
+other = "sobre"
+
+[stack_eyebrow]
+other = "stack"
+
+[experience_eyebrow]
+other = "experiência"
+
+[building_eyebrow]
+other = "a construir"
+
+[education_eyebrow]
+other = "formação"
+
+[contact_eyebrow]
+other = "contacto"
+
+[personal_project]
+other = "Projeto pessoal"

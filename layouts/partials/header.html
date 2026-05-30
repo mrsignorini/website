@@ -1,0 +1,29 @@
+{{ $isHome := .IsHome }}
+{{ $homeURL := relLangURL "/" }}
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="{{ if $isHome }}#top{{ else }}{{ $homeURL }}{{ end }}" class="brand" aria-label="Ivens Signorini — home">
+      <span class="mark">IS</span>
+      <span>signorini<span class="dim">.cloud</span></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      {{ range site.Menus.main }}
+        {{ $href := printf "%s#%s" $homeURL .Params.section }}
+        {{ if $isHome }}
+          {{ $href = printf "#%s" .Params.section }}
+        {{ end }}
+        <a href="{{ $href }}"><span class="idx">{{ .Params.idx }}</span>{{ .Name }}</a>
+      {{ end }}
+    </nav>
+
+    <div class="nav-right">
+      {{ partial "language-switcher.html" . }}
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <a href="{{ if $isHome }}#contact{{ else }}{{ $homeURL }}#contact{{ end }}" class="nav-cta">{{ T "get_in_touch" }}</a>
+    </div>
+  </div>
+</header>
