@@ -42,3 +42,24 @@ other = "contacto"
 
 [personal_project]
 other = "Projeto pessoal"
+
+[blog]
+other = "Blog"
+
+[blog_eyebrow]
+other = "escrita"
+
+[read_more]
+other = "Ler mais"
+
+[back_to_blog]
+other = "Voltar ao blog"
+
+[published_on]
+other = "Publicado em"
+
+[minutes_read]
+other = "min de leitura"
+
+[no_posts_yet]
+other = "Ainda não há artigos. Volte em breve."

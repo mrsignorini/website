@@ -1,0 +1,32 @@
+{{ define "main" }}
+<article class="wrap post-section">
+  <a href="{{ relLangURL "/blog/" }}" class="back-link">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 8H3M7 4L3 8l4 4"/></svg>
+    {{ T "back_to_blog" }}
+  </a>
+
+  <header class="post-header">
+    <p class="eyebrow"><span class="num">06</span> / {{ T "blog_eyebrow" }}</p>
+    <h1 class="post-title">{{ .Title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ T "published_on" }} {{ .Date.Format "January 2, 2006" }}</time>
+      <span class="post-meta-sep">·</span>
+      <span>{{ .ReadingTime }} {{ T "minutes_read" }}</span>
+    </div>
+    {{ with .Params.description }}
+      <p class="post-lede">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  <div class="post-body">
+    {{ .Content }}
+  </div>
+
+  <footer class="post-footer">
+    <a href="{{ relLangURL "/blog/" }}" class="back-link">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 8H3M7 4L3 8l4 4"/></svg>
+      {{ T "back_to_blog" }}
+    </a>
+  </footer>
+</article>
+{{ end }}

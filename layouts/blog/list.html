@@ -1,0 +1,33 @@
+{{ define "main" }}
+<section class="section-pad wrap blog-list-section" id="blog">
+  <div class="eyebrow reveal"><span class="num">06</span> / {{ T "blog_eyebrow" }}</div>
+  <h1 class="section-title reveal">{{ T "blog" }}</h1>
+
+  {{ if .Pages }}
+    <div class="blog-grid">
+      {{ range $i, $p := .Pages.ByDate.Reverse }}
+        <article class="blog-card{{ if eq $i 0 }} blog-card--featured{{ end }} reveal d{{ add $i 1 }}">
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <time class="blog-date" datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 2, 2006" }}</time>
+              <span class="blog-read-time">{{ $p.ReadingTime }} {{ T "minutes_read" }}</span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+            </h2>
+            {{ with $p.Params.description }}
+              <p class="blog-card-desc">{{ . }}</p>
+            {{ end }}
+            <a href="{{ $p.RelPermalink }}" class="blog-read-more">
+              {{ T "read_more" }}
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+            </a>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  {{ else }}
+    <p class="blog-empty">{{ T "no_posts_yet" }}</p>
+  {{ end }}
+</section>
+{{ end }}

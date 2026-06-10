@@ -9,11 +9,20 @@
 
     <nav class="nav-links" id="navLinks">
       {{ range site.Menus.main }}
-        {{ $href := printf "%s#%s" $homeURL .Params.section }}
-        {{ if $isHome }}
-          {{ $href = printf "#%s" .Params.section }}
+        {{ $href := "" }}
+        {{ if .Params.url }}
+          {{ $href = relLangURL .Params.url }}
+        {{ else }}
+          {{ if $isHome }}
+            {{ $href = printf "#%s" .Params.section }}
+          {{ else }}
+            {{ $href = printf "%s#%s" $homeURL .Params.section }}
+          {{ end }}
         {{ end }}
-        <a href="{{ $href }}"><span class="idx">{{ .Params.idx }}</span>{{ .Name }}</a>
+        {{ $isBlogPage := hasPrefix $.RelPermalink (relLangURL "/blog/") }}
+        <a href="{{ $href }}"
+          {{- if and .Params.url $isBlogPage }} class="active"{{ end -}}
+        ><span class="idx">{{ .Params.idx }}</span>{{ .Name }}</a>
       {{ end }}
     </nav>
 

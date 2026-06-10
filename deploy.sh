@@ -21,11 +21,11 @@ prepare_worktree() {
     return
   fi
 
-  git worktree add --detach "$WORKTREE_DIR" HEAD
-  (
-    cd "$WORKTREE_DIR"
-    git checkout --orphan "$PUBLISH_BRANCH"
-  )
+  # No local or remote branch yet — bootstrap a fresh orphan repo
+  ORIGIN_URL="$(git remote get-url origin)"
+  git -C "$WORKTREE_DIR" init
+  git -C "$WORKTREE_DIR" remote add origin "$ORIGIN_URL"
+  git -C "$WORKTREE_DIR" checkout --orphan "$PUBLISH_BRANCH"
 }
 
 clear_worktree() {

@@ -37,3 +37,11 @@ weight = 5
 [main.params]
 section = "contact"
 idx = "05"
+
+[[main]]
+name = "blog"
+identifier = "blog"
+weight = 6
+[main.params]
+url = "/blog/"
+idx = "06"
