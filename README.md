@@ -1,4 +1,4 @@
-# signorini.cloud
+claude# signorini.cloud
 
 Personal portfolio site for Ivens Signorini — Senior Backend Engineer. Built with [Hugo](https://gohugo.io/) and deployed to [signorini.cloud](https://signorini.cloud/) via GitHub Pages.
 
@@ -39,6 +39,39 @@ static/            # images and other static assets
 The site supports four languages: English (primary), Italian, Spanish, and Portuguese. Language stubs are in `content/` and string translations in `i18n/`.
 
 ## Deploy
+
+### Option A — `/docs` folder on `main` (recommended)
+
+Build the site into `docs/` and push to `main`. GitHub Pages serves directly from that folder.
+
+**One-time GitHub setup:**
+
+1. Go to repo → **Settings → Pages**
+2. Set **Branch:** `main`, **Folder:** `/docs`
+3. Save.
+
+**Publishing new content:**
+
+```sh
+hugo --config config.toml --destination docs --minify
+touch docs/.nojekyll
+git add docs/
+git commit -m "Publish site"
+git push origin main
+```
+
+Or with the Makefile shortcut:
+
+```sh
+make publish
+```
+
+> Never manually edit files inside `docs/` — it is fully regenerated on every build.
+> The `CNAME` file is copied automatically from `static/CNAME`; make sure it lives there.
+
+---
+
+### Option B — `gh-pages` branch
 
 ```sh
 ./deploy.sh

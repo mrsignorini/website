@@ -137,6 +137,29 @@
     });
   }
 
+  /* ---------- Mobile nav ---------- */
+  var burger = document.getElementById('navBurger');
+  var mobileNav = document.getElementById('navLinks');
+  function closeMobileNav() {
+    if (!mobileNav || !burger) return;
+    mobileNav.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }
+  if (burger && mobileNav) {
+    burger.addEventListener('click', function () {
+      var open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    mobileNav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeMobileNav);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMobileNav();
+    });
+  }
+
   /* ---------- Tweaks host protocol ---------- */
   var panel = document.getElementById('tweaks');
   function setTweaks(on) { if (panel) panel.classList.toggle('on', !!on); }

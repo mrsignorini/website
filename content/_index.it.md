@@ -7,7 +7,7 @@ hero_name: "Ivens"
 hero_surname: "Signorini"
 hero_role: "Senior Backend Engineer"
 hero_lede: "Oltre 20 anni a costruire <strong>sistemi distribuiti</strong> per fintech, SaaS &amp; blockchain — <strong>Go</strong> · <strong>Java</strong> · <strong>Kubernetes</strong> · <strong>AWS</strong>."
-hero_location: "Porto, Portogallo · Disponibile da remoto Londra / UK"
+hero_location: "Porto, Portogallo · Disponibile da remoto Londra / UK & Europa"
 
 about_title: "Software manutenibile,<br />non solo funzionale."
 about_body: |
@@ -20,5 +20,5 @@ stack_title: "Gli strumenti che utilizzo."
 experience_title: "Due decenni di sviluppo."
 
 contact_headline: "Parliamoci."
-contact_sub: "Stai assumendo per un ruolo Senior o Staff Backend a Londra o da remoto nel UK? Sarei felice di sentirne parlare."
+contact_sub: "Stai assumendo per un ruolo Senior o Staff Backend a Londra, da remoto nel UK o in qualsiasi parte d'Europa? Sarei felice di sentirne parlare."
 ---

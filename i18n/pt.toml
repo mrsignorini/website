@@ -43,6 +43,12 @@ other = "contacto"
 [personal_project]
 other = "Projeto pessoal"
 
+[founder_badge]
+other = "Founder"
+
+[seeking_investment]
+other = "À procura de investimento"
+
 [blog]
 other = "Blog"
 

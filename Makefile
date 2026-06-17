@@ -17,4 +17,11 @@ build:
 clean:
 	rm -rf public resources .hugo_build.lock
 
-.PHONY: default start start-watch watch build clean
+publish:
+	$(HUGO) $(HUGO_BUILD_FLAGS) --destination docs
+	touch docs/.nojekyll
+	git add docs/
+	git commit -m "Publish $$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+	git push origin main
+
+.PHONY: default start start-watch watch build clean publish

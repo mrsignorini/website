@@ -1,13 +1,13 @@
 ---
 title: "Ivens Signorini — Senior Backend Engineer"
 browser_title: "Ivens Signorini — Senior Backend Engineer"
-description: "Senior Backend Engineer with 20+ years building distributed systems for fintech, SaaS, and blockchain. Go · Java · Kubernetes · AWS. Open to remote Senior/Staff roles in London / UK."
+description: "Senior Backend Engineer with 20+ years building distributed systems for fintech, SaaS, and blockchain. Go · Java · Kubernetes · AWS. Open to remote Senior/Staff roles in London / UK & EU."
 
 hero_name: "Ivens"
 hero_surname: "Signorini"
 hero_role: "Senior Backend Engineer"
 hero_lede: "20+ years building <strong>distributed systems</strong> for fintech, SaaS &amp; blockchain — <strong>Go</strong> · <strong>Java</strong> · <strong>Kubernetes</strong> · <strong>AWS</strong>."
-hero_location: "Porto, Portugal · Open to remote London / UK"
+hero_location: "Porto, Portugal · Open to remote London / UK & EU"
 
 about_title: "Software that's maintainable,<br />not just functional."
 about_body: |
@@ -20,5 +20,5 @@ stack_title: "The tools I reach for."
 experience_title: "Two decades, shipping."
 
 contact_headline: "Let's talk."
-contact_sub: "Hiring for a Senior or Staff Backend role in London or remote across the UK? I'd be glad to hear about it."
+contact_sub: "Hiring for a Senior or Staff Backend role in London, remote UK, or anywhere across Europe? I'd be glad to hear about it."
 ---

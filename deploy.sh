@@ -46,7 +46,7 @@ echo "Cleaning published files"
 clear_worktree
 
 echo "Generating site"
-"$HUGO_BIN" --config config.toml --destination "$WORKTREE_DIR" --minify
+"$HUGO_BIN" --config config.toml --destination "$WORKTREE_DIR" --minify --cleanDestinationDir=false
 
 touch "$WORKTREE_DIR/.nojekyll"
 

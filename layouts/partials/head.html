@@ -3,6 +3,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ with .Params.browser_title }}{{ . }}{{ else }}{{ .Title }}{{ end }}</title>
 <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:title" content="{{ with .Params.browser_title }}{{ . }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ .Site.BaseURL }}signorini-lettering.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ with .Params.browser_title }}{{ . }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta name="twitter:image" content="{{ .Site.BaseURL }}signorini-lettering.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
