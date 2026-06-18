@@ -257,3 +257,19 @@ right up to them.
 *Frameworks worth a look if you want to try this: [Wails](https://wails.io) (Go + webview),
 [Tauri](https://tauri.app) (Rust + webview). Both implement exactly the two-direction protocol
 described here.*
+
+---
+
+## Further reading
+
+- [Wails documentation](https://wails.io/docs/introduction) — official guide to the Go + webview framework
+- [Tauri documentation](https://tauri.app/start/) — Rust alternative, same bridge pattern
+- [Electron vs Tauri vs Wails](https://github.com/Elanis/web-to-desktop-framework-comparison) — community benchmark comparing hybrid desktop frameworks
+- [WebView2 overview](https://learn.microsoft.com/en-us/microsoft-edge/webview2/) — Microsoft's embedded browser runtime (used by Wails on Windows)
+- [Go plugin system via RPC](https://github.com/hashicorp/go-plugin) — HashiCorp's approach to cross-process bridges in Go
+
+---
+
+## About the author
+
+**Ivens Signorini** is a Senior Backend Engineer focused on distributed systems, AI infrastructure, and high-performance APIs. He works primarily in Go and TypeScript, building systems that run at scale. His technical interests include protocol design, concurrency patterns, and the architecture of AI-native applications. He writes at [signorini.cloud](https://signorini.cloud).
