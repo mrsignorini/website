@@ -911,7 +911,7 @@ footer.foot {
   &:hover { color: var(--accent); gap: 10px; svg { transform: translateX(-2px); } }
 }
 .post-header {
-  max-width: 72ch;
+  max-width: var(--maxw);
   margin-bottom: 56px;
   padding-bottom: 48px;
   border-bottom: 1px solid var(--border);
@@ -942,7 +942,7 @@ footer.foot {
   margin-top: 22px;
 }
 .post-body {
-  max-width: 68ch;
+  max-width: var(--maxw);
   font-size: 17.5px;
   line-height: 1.78;
   color: var(--text);
@@ -995,7 +995,7 @@ footer.foot {
   hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
 }
 .post-footer {
-  max-width: 68ch;
+  max-width: var(--maxw);
   margin-top: 72px;
   padding-top: 36px;
   border-top: 1px solid var(--border);
