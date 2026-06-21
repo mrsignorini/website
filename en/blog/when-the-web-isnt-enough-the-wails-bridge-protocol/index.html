@@ -1,0 +1,129 @@
+<!doctype html><html lang=en data-theme=dark><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>When the web isn't enough: the Wails bridge protocol</title><meta name=description content="Why some software has to leave the browser — and how a thin bridge lets you keep web-quality UIs while running real native code underneath."><link rel=canonical href=https://signorini.cloud/en/blog/when-the-web-isnt-enough-the-wails-bridge-protocol/><meta property="og:title" content="When the web isn't enough: the Wails bridge protocol"><meta property="og:description" content="Why some software has to leave the browser — and how a thin bridge lets you keep web-quality UIs while running real native code underneath."><meta property="og:url" content="https://signorini.cloud/en/blog/when-the-web-isnt-enough-the-wails-bridge-protocol/"><meta property="og:type" content="website"><meta property="og:image" content="https://signorini.cloud/signorini-lettering.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="When the web isn't enough: the Wails bridge protocol"><meta name=twitter:description content="Why some software has to leave the browser — and how a thin bridge lets you keep web-quality UIs while running real native code underneath."><meta name=twitter:image content="https://signorini.cloud/signorini-lettering.png"><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel=stylesheet><link rel=stylesheet href=/css/main.min.fc38651aa48ce7e9674ef07882f8deaab23c334b78847192417595386ec2d243.css></head><body><header class=nav id=nav><div class=nav-inner><a href=/en/ class=brand aria-label="Ivens Signorini — home"><span class=mark>IS</span>
+<span>signorini<span class=dim>.cloud</span></span></a><nav class=nav-links id=navLinks><a href=/en/#about><span class=idx>01</span>about</a>
+<a href=/en/#stack><span class=idx>02</span>stack</a>
+<a href=/en/#experience><span class=idx>03</span>experience</a>
+<a href=/en/#project><span class=idx>04</span>building</a>
+<a href=/en/#contact><span class=idx>05</span>contact</a>
+<a href=/en/blog/ class=active><span class=idx>06</span>blog</a></nav><div class=nav-right><div class=lang-toggle role=group aria-label=Language><a href=/en/blog/when-the-web-isnt-enough-the-wails-bridge-protocol/ class="lang-btn active">EN</a>
+<a href=/it/blog/when-the-web-isnt-enough-the-wails-bridge-protocol/ class=lang-btn>IT</a>
+<a href=/es/blog/when-the-web-isnt-enough-the-wails-bridge-protocol/ class=lang-btn>ES</a>
+<a href=/pt/blog/when-the-web-isnt-enough-the-wails-bridge-protocol/ class=lang-btn>PT</a></div><button class=theme-toggle id=themeToggle aria-label="Toggle colour theme" title="Toggle theme">
+<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button>
+<a href=/en/#contact class=nav-cta>Get in touch</a>
+<button class=nav-burger id=navBurger aria-label="Toggle menu" aria-expanded=false>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line class="b-top" x1="3" y1="6" x2="21" y2="6"/><line class="b-mid" x1="3" y1="12" x2="21" y2="12"/><line class="b-bot" x1="3" y1="18" x2="21" y2="18"/></svg></button></div></div></header><main id=main><article class="wrap post-section"><a href=/en/blog/ class=back-link><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
+Back to blog</a><header class=post-header><p class=eyebrow><span class=num>06</span> / writing</p><h1 class=post-title>When the web isn't enough: the Wails bridge protocol</h1><div class=post-meta><time datetime=2026-06-09>Published on June 9, 2026</time>
+<span class=post-meta-sep>·</span>
+<span>11 min read</span></div><p class=post-lede>Why some software has to leave the browser — and how a thin bridge lets you keep web-quality UIs while running real native code underneath.</p></header><div class=post-body><h2 id=the-web-won--except-where-it-didnt>The web won — except where it didn&rsquo;t</h2><p>For most software, the browser is the right answer. A web app installs nothing, updates
+itself, runs on every OS, and lets you build the UI with the richest, best-tooled
+front-end ecosystem on earth. If you <em>can</em> ship a web app, you usually should.</p><p>But the browser is a sandbox, and that sandbox has walls. They exist for good reasons —
+a random web page should not be able to read your microphone&rsquo;s raw loopback stream, open
+arbitrary files, talk to a USB device, or run a tight numerical loop that pins a CPU core.
+The same restrictions that make the web safe to browse make it the wrong tool for a whole
+class of programs.</p><p>When you hit one of those walls, you don&rsquo;t actually want to throw away the web UI. The
+HTML/CSS/JS rendering stack is <em>great</em>. What you want is to keep the dashboard and bolt it
+onto an engine that runs outside the sandbox — a real native process, in a language that&rsquo;s
+good at the thing the browser won&rsquo;t let you do.</p><p>That seam between &ldquo;web UI&rdquo; and &ldquo;native engine&rdquo; is the <strong>bridge</strong>. This post is about what a
+bridge protocol actually is, and the decision rule for when you need one.</p><hr><h2 id=when-a-web-program-isnt-the-right-tool>When a web program isn&rsquo;t the right tool</h2><p>Four signals, any one of which should make you reach past the browser.</p><h3 id=1-you-need-hardware-the-sandbox-wont-hand-over>1. You need hardware the sandbox won&rsquo;t hand over</h3><p>Browsers expose a curated, permission-gated slice of the machine: a camera, a microphone
+input, maybe a gamepad or a single USB device through WebUSB if the user clicks through a
+prompt. What they deliberately <em>don&rsquo;t</em> give you is the messy, powerful stuff:</p><ul><li><strong>System / loopback audio</strong> — &ldquo;record what I&rsquo;m hearing,&rdquo; not just &ldquo;record my mic.&rdquo; The
+Web Audio API can capture a mic; it cannot reliably tap the OS audio output. A meeting
+recorder, a transcription tool, an audio router — all need the OS&rsquo;s native audio API.</li><li><strong>Arbitrary filesystem access</strong> — watching a directory, memory-mapping a large file,
+managing a local database on disk.</li><li><strong>Serial ports, Bluetooth stacks, printers, scanners, scientific instruments</strong> —
+peripherals whose drivers live in C and speak protocols the browser never modeled.</li><li><strong>Global hotkeys, tray icons, window management, auto-start</strong> — OS integration that a
+tab simply isn&rsquo;t allowed to do.</li></ul><p>If your feature list contains a peripheral or an OS capability the sandbox gates off, that&rsquo;s
+the clearest signal of all. No amount of clever JavaScript gets you past a wall that&rsquo;s there
+on purpose.</p><h3 id=2-you-need-raw-compute-in-a-language-built-for-it>2. You need raw compute, in a language built for it</h3><p>JavaScript in a browser is fast — until it isn&rsquo;t. For UI logic and I/O it&rsquo;s perfectly fine.
+But for sustained number-crunching it pays a real tax: a single-threaded event loop,
+garbage-collection pauses, JIT warm-up, and no true shared-memory parallelism without
+jumping through Web Worker / WASM hoops.</p><p>When the core of your program is <em>computation</em> — signal processing, simulation, encryption,
+parsing gigabytes, real-time inference, anything that wants every core of the machine — you
+want a language designed for that: <strong>Go, Rust, C, C++, Zig</strong>. Compiled, multi-threaded,
+predictable memory, direct access to SIMD and native libraries. You move the heavy loop into
+that language and let the web layer stay a thin presentation skin over it.</p><p>The tell: your performance ceiling is a <em>CPU</em> problem, not a <em>network</em> problem. If making the
+work faster means &ldquo;use more cores / less GC / tighter memory,&rdquo; the browser is the wrong
+runtime for that work.</p><h3 id=3-it-must-work-without-a-server--privacy-latency-or-offline>3. It must work without a server — privacy, latency, or offline</h3><p>A web app, almost by definition, phones home. For some software that&rsquo;s unacceptable:</p><ul><li><strong>Privacy</strong> — the data must never leave the machine. Medical notes, legal material, raw
+meeting audio, anything you&rsquo;d rather not stream to someone else&rsquo;s cloud. Native code can
+do the sensitive work locally and only send what the user explicitly chooses to.</li><li><strong>Latency</strong> — a round trip to a server is tens to hundreds of milliseconds you don&rsquo;t have
+if you&rsquo;re reacting to live input in real time.</li><li><strong>Offline</strong> — it has to keep working on a plane, in a hospital basement, behind a
+corporate firewall. No connection, no problem.</li></ul><p>If &ldquo;send it to a server&rdquo; is a non-starter for any of those reasons, the logic has to live on
+the machine — which means a local program, not a page.</p><h3 id=4-it-must-be-one-thing-the-user-can-just-run>4. It must be one thing the user can just <em>run</em></h3><p>There&rsquo;s a human factor too. A web stack often means &ldquo;install Node, run two servers, set some
+environment variables, keep a terminal open.&rdquo; For a developer that&rsquo;s Tuesday. For everyone
+else it&rsquo;s a wall.</p><p>A native app can ship as <strong>one executable</strong>: download a file, double-click it, it works. No
+runtime to install, no ports to remember, no localhost to keep alive. When your user is not a
+sysadmin — and especially when they&rsquo;re using the tool under pressure — &ldquo;one file that runs&rdquo;
+is a feature in itself.</p><hr><h2 id=so-youve-decided-to-go-native-now-what>So you&rsquo;ve decided to go native. Now what?</h2><p>The naive native path is to also build the UI natively — Qt, GTK, Cocoa, WinUI. Powerful,
+but you give up the web&rsquo;s design velocity and you rebuild per platform.</p><p>The modern answer is a <strong>hybrid</strong>: render the UI with web technology inside a native window,
+and run the logic as a compiled native binary. Electron popularized this, but it pays for it
+by bundling an entire Chromium + Node runtime — hundreds of megabytes — into every app.</p><p>The leaner approach uses the operating system&rsquo;s <strong>own</strong> webview (WebKit on macOS, WebView2 on
+Windows, WebKitGTK on Linux) for rendering, and a single compiled binary for the logic. No
+bundled browser, no bundled Node. This is the model behind frameworks like <strong><a href=https://wails.io>Wails</a></strong>
+(Go) and <strong><a href=https://tauri.app>Tauri</a></strong> (Rust). Small, fast, native — with a web UI on top.</p><p>And the moment you split the program into &ldquo;web UI&rdquo; and &ldquo;native engine,&rdquo; you need a way for the
+two halves to talk. That communication layer — its mechanism, its conventions, its rules — <em>is</em>
+the bridge protocol.</p><hr><h2 id=what-a-bridge-protocol-actually-is>What a bridge protocol actually is</h2><p>A bridge is not a network API. There&rsquo;s no socket, no port, no HTTP between the two halves —
+they&rsquo;re in the same process, on opposite sides of the webview boundary. The bridge is the set
+of rules for ferrying calls and data across that boundary. Every hybrid framework has one, and
+they all solve the same two problems:</p><h3 id=direction-a--ui-calls-into-native-code-requestresponse>Direction A — UI calls into native code (request/response)</h3><p>You write a function in the native language. The framework <strong>reflects over it</strong> and generates
+a matching JavaScript stub. The UI calls the stub like any async function; the framework
+marshals the arguments (usually to JSON), carries them across the boundary, runs the real
+function on the native side, and resolves the JS promise with the result.</p><pre tabindex=0><code>Native:  func Login(email, password string) (string, error)
+                        │   (framework reflects + generates a binding)
+                        ▼
+JS:      App.Login(email, password)   // returns Promise&lt;string&gt;
+</code></pre><p>This is the <em>pull</em> direction: the UI asks, the engine answers. Note how cleanly a language
+that returns <code>(value, error)</code> maps onto JavaScript&rsquo;s <code>resolve / reject</code> — the bridge is
+largely a translation layer between two languages&rsquo; calling conventions. The UI never thinks
+about JSON or the boundary; it just &ldquo;calls a function.&rdquo;</p><h3 id=direction-b--native-code-pushes-to-the-ui-events>Direction B — Native code pushes to the UI (events)</h3><p>Request/response is fine for &ldquo;fetch this data.&rdquo; But native engines often produce <em>streams</em> —
+an audio level meter ticking 30 times a second, progress on a long computation, a log tail, a
+sensor reading. For those, the engine <strong>pushes</strong> rather than waiting to be asked.</p><p>Every bridge framework provides an <strong>event bus</strong> for this: the native side emits a named event
+with a payload; the UI subscribes to that name with a callback and unsubscribes when the
+component goes away.</p><pre tabindex=0><code>Native:  emit(&#34;level:mic&#34;, amplitude)   ──▶   UI:  on(&#34;level:mic&#34;, updateMeter)
+Native:  emit(&#34;progress&#34;, 0.42)         ──▶   UI:  on(&#34;progress&#34;, setProgressBar)
+</code></pre><p>This is the <em>push</em> direction: the engine speaks, the UI listens.</p><h3 id=the-whole-protocol-in-one-rule>The whole protocol in one rule</h3><blockquote><p><strong>Pull for commands and queries; push for streams.</strong></p></blockquote><p>That&rsquo;s it. Generated function bindings in one direction, a named event bus in the other.
+Two mechanisms, one boundary. Once you internalize that split, every hybrid-desktop framework
+looks the same under the hood — the names change (<code>Bind</code> vs. <code>invoke</code>, <code>EventsEmit</code> vs.
+<code>emit</code>), but the shape is identical.</p><pre tabindex=0><code>  UI  (web, in the OS webview)                  ENGINE  (compiled native binary)
+  ─────────────────────────────                 ─────────────────────────────────
+  call(&#34;StartRecording&#34;)  ───────────────▶      func StartRecording()
+        (promise resolves) ◀─────────────        return ok / error
+
+  on(&#34;level:mic&#34;, setMeter) ◀────────────        emit(&#34;level:mic&#34;, db)
+  on(&#34;transcript&#34;, append)  ◀────────────        emit(&#34;transcript&#34;, segment)
+</code></pre><hr><h2 id=a-design-pattern-worth-stealing-the-single-steering-wheel>A design pattern worth stealing: the single steering wheel</h2><p>A subtle but important convention shows up in well-built bridges. You don&rsquo;t expose dozens of
+unrelated native objects to the UI. You expose <strong>one</strong> — a single facade struct whose methods
+<em>are</em> the app&rsquo;s entire API surface. The framework reflects over that one object and generates
+the whole binding set from it.</p><p>That one object is the steering wheel. The UI turns it; behind it, the facade delegates to
+focused internal modules (an audio module, a transcription module, a storage module) that the
+UI never sees directly. The payoff:</p><ul><li><strong>One clean, named API</strong> — the UI thinks in verbs (<code>StartRecording</code>, <code>Login</code>, <code>ListFiles</code>),
+not in the messy plumbing behind each one.</li><li><strong>A single audit point</strong> — everything crossing the boundary goes through one surface, so
+it&rsquo;s easy to reason about what the UI can and can&rsquo;t trigger.</li><li><strong>Freedom to refactor</strong> — you can rewrite the engine internals completely as long as the
+facade&rsquo;s method signatures hold.</li></ul><p>It&rsquo;s the Facade pattern, applied to a process boundary. The bridge gives you the <em>transport</em>;
+the single-facade convention gives you a <em>clean contract</em> to put on top of it.</p><hr><h2 id=a-worked-example-a-meeting--interview-recorder>A worked example: a meeting / interview recorder</h2><p>To make all of this concrete, picture a tool that records a live conversation, transcribes it
+on the fly, and surfaces help in the moment — the kind of thing this codebase happens to be.
+Run the four signals against it:</p><ol><li><strong>Hardware?</strong> Yes — it has to capture <em>system</em> audio (the other side of the call) plus the
+mic. The browser can&rsquo;t reliably do loopback capture. → native audio API required.</li><li><strong>Compute?</strong> Real-time audio: voice-activity detection chopping the stream on silence, PCM
+buffering, streaming chunks to a transcription engine — all sustained, low-latency work
+that wants a compiled, concurrent language.</li><li><strong>Server-free?</strong> Live meeting audio is sensitive; users want the option to transcribe
+locally and keep it offline. → logic on the machine.</li><li><strong>Just run it?</strong> The user is mid-interview, not configuring a dev environment. → one
+double-clickable binary.</li></ol><p>Four for four. This is a textbook case for going native — and for the bridge. The web UI shows
+the live transcript, the level meters, the controls. The native engine opens two audio streams,
+runs VAD on real threads, talks to a transcription backend, and <strong>pushes</strong> a <code>transcript</code> event
+for each finished segment and a <code>level:mic</code> event many times a second. The UI <strong>pulls</strong> with
+<code>StartRecording</code> / <code>StopRecording</code>. Pull for commands, push for streams — the same rule, doing
+real work.</p><p>Contrast that with, say, a blog CMS or a project tracker: no special hardware, no heavy
+compute, server-backed by design, and the browser&rsquo;s &ldquo;nothing to install&rdquo; <em>is</em> the feature.
+That&rsquo;s a web app, full stop. The bridge is for the other category — and now you can tell which
+category you&rsquo;re in.</p><hr><h2 id=the-decision-in-one-table>The decision, in one table</h2><table><thead><tr><th>If your program…</th><th>…the web is</th><th>…because</th></tr></thead><tbody><tr><td>Needs loopback audio, serial/USB, filesystem watching, OS hooks</td><td><strong>not enough</strong></td><td>the sandbox gates those off on purpose</td></tr><tr><td>Lives or dies on CPU-bound compute</td><td><strong>not enough</strong></td><td>you want compiled, multi-threaded, GC-light code</td></tr><tr><td>Must run offline / fully local / privacy-first</td><td><strong>not enough</strong></td><td>a page assumes a server; native logic doesn&rsquo;t</td></tr><tr><td>Must ship as one double-clickable file</td><td><strong>not enough</strong></td><td>&ldquo;no install&rdquo; beats &ldquo;set up a runtime&rdquo;</td></tr><tr><td>Is CRUD over a network, on every device, install-free</td><td><strong>exactly right</strong></td><td>the sandbox costs you nothing here</td></tr></tbody></table><p>When you land in one of the top four rows, you reach for a native local app — and the bridge
+is what lets you do that <em>without</em> giving up the web UI you&rsquo;d have built anyway. You write the
+hard parts in a language that&rsquo;s good at hard parts, you write the interface in the language
+that&rsquo;s good at interfaces, and a thin two-direction protocol — generated calls one way, an
+event bus the other — stitches them into a single program the user just double-clicks.</p><p>That&rsquo;s the whole idea. The web didn&rsquo;t lose; it just has edges. The bridge is how you build
+right up to them.</p><hr><p><em>Frameworks worth a look if you want to try this: <a href=https://wails.io>Wails</a> (Go + webview),
+<a href=https://tauri.app>Tauri</a> (Rust + webview). Both implement exactly the two-direction protocol
+described here.</em></p><hr><h2 id=further-reading>Further reading</h2><ul><li><a href=https://wails.io/docs/introduction>Wails documentation</a> — official guide to the Go + webview framework</li><li><a href=https://tauri.app/start/>Tauri documentation</a> — Rust alternative, same bridge pattern</li><li><a href=https://github.com/Elanis/web-to-desktop-framework-comparison>Electron vs Tauri vs Wails</a> — community benchmark comparing hybrid desktop frameworks</li><li><a href=https://learn.microsoft.com/en-us/microsoft-edge/webview2/>WebView2 overview</a> — Microsoft&rsquo;s embedded browser runtime (used by Wails on Windows)</li><li><a href=https://github.com/hashicorp/go-plugin>Go plugin system via RPC</a> — HashiCorp&rsquo;s approach to cross-process bridges in Go</li></ul><hr><h2 id=about-the-author>About the author</h2><p><strong>Ivens Signorini</strong> is a Senior Backend Engineer focused on distributed systems, AI infrastructure, and high-performance APIs. He works primarily in Go and TypeScript, building systems that run at scale. His technical interests include protocol design, concurrency patterns, and the architecture of AI-native applications. He writes at <a href=https://signorini.cloud>signorini.cloud</a>.</p></div><footer class=post-footer><a href=/en/blog/ class=back-link><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
+Back to blog</a></footer></article></main><footer class=foot><div class=foot-sig><img src=/signorini-lettering.png alt=Signorini width=380 height=62></div><div class=foot-inner><span>© 2026 Ivens Signorini · signorini.cloud</span>
+<span class=right><a href=#top>Back to top ↑</a></span></div></footer><div id=tweaks><h4>Tweaks</h4><div class=tw-row><span class=tw-label>Accent</span><div class=swatches id=swatches></div></div><div class=tw-row><span class=tw-label>Theme</span><div class=seg id=themeSeg><button data-theme-val=dark>Dark</button>
+<button data-theme-val=light>Light</button></div></div><div class=tw-row><span class=tw-label>Headline font</span><div class=seg id=fontSeg><button data-font="'Space Grotesk', sans-serif">Grotesk</button>
+<button data-font="'IBM Plex Sans', sans-serif">Plex</button></div></div></div><script src=/js/main.min.24bf30f162ddf1adf82fe469e0b51249e47ed4d07948a67fba0fe3169d2561b2.js defer></script></body></html>

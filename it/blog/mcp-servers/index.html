@@ -1,0 +1,100 @@
+<!doctype html><html lang=it data-theme=dark><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>MCP Server: il protocollo che ha dato le mani all'AI</title><meta name=description content="Cos'è il Model Context Protocol, da dove viene e perché ogni integrazione AI seria oggi lo parla."><link rel=canonical href=https://signorini.cloud/it/blog/mcp-servers/><meta property="og:title" content="MCP Server: il protocollo che ha dato le mani all'AI"><meta property="og:description" content="Cos'è il Model Context Protocol, da dove viene e perché ogni integrazione AI seria oggi lo parla."><meta property="og:url" content="https://signorini.cloud/it/blog/mcp-servers/"><meta property="og:type" content="website"><meta property="og:image" content="https://signorini.cloud/signorini-lettering.png"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="MCP Server: il protocollo che ha dato le mani all'AI"><meta name=twitter:description content="Cos'è il Model Context Protocol, da dove viene e perché ogni integrazione AI seria oggi lo parla."><meta name=twitter:image content="https://signorini.cloud/signorini-lettering.png"><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel=stylesheet><link rel=stylesheet href=/css/main.min.fc38651aa48ce7e9674ef07882f8deaab23c334b78847192417595386ec2d243.css></head><body><header class=nav id=nav><div class=nav-inner><a href=/it/ class=brand aria-label="Ivens Signorini — home"><span class=mark>IS</span>
+<span>signorini<span class=dim>.cloud</span></span></a><nav class=nav-links id=navLinks><a href=/it/#about><span class=idx>01</span>chi sono</a>
+<a href=/it/#stack><span class=idx>02</span>stack</a>
+<a href=/it/#experience><span class=idx>03</span>esperienza</a>
+<a href=/it/#project><span class=idx>04</span>progetti</a>
+<a href=/it/#contact><span class=idx>05</span>contatti</a>
+<a href=/it/blog/ class=active><span class=idx>06</span>blog</a></nav><div class=nav-right><div class=lang-toggle role=group aria-label=Lingua><a href=/en/blog/mcp-servers/ class=lang-btn>EN</a>
+<a href=/it/blog/mcp-servers/ class="lang-btn active">IT</a>
+<a href=/es/blog/mcp-servers/ class=lang-btn>ES</a>
+<a href=/pt/blog/mcp-servers/ class=lang-btn>PT</a></div><button class=theme-toggle id=themeToggle aria-label="Toggle colour theme" title="Toggle theme">
+<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+</button>
+<a href=/it/#contact class=nav-cta>Contattami</a>
+<button class=nav-burger id=navBurger aria-label="Toggle menu" aria-expanded=false>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line class="b-top" x1="3" y1="6" x2="21" y2="6"/><line class="b-mid" x1="3" y1="12" x2="21" y2="12"/><line class="b-bot" x1="3" y1="18" x2="21" y2="18"/></svg></button></div></div></header><main id=main><article class="wrap post-section"><a href=/it/blog/ class=back-link><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
+Torna al blog</a><header class=post-header><p class=eyebrow><span class=num>06</span> / scrittura</p><h1 class=post-title>MCP Server: il protocollo che ha dato le mani all'AI</h1><div class=post-meta><time datetime=2026-06-17>Pubblicato il June 17, 2026</time>
+<span class=post-meta-sep>·</span>
+<span>7 min di lettura</span></div><p class=post-lede>Cos'è il Model Context Protocol, da dove viene e perché ogni integrazione AI seria oggi lo parla.</p></header><div class=post-body><p>I modelli AI sono straordinari nel ragionare. Sono pessimi nell&rsquo;agire — o almeno lo erano, finché non hanno avuto un modo standardizzato per estendersi verso l&rsquo;esterno. MCP è quel modo.</p><h2 id=il-problema-prima-di-mcp>Il problema prima di MCP</h2><p>Nel 2023, se volevi che un LLM leggesse un file, interrogasse un database o chiamasse un&rsquo;API, scrivevi codice glue personalizzato. Ogni team reinventava la stessa ruota: uno strato sottile che serializzava il contesto, lo passava al modello, analizzava le chiamate agli strumenti dalla risposta, le eseguiva e reindirizzava i risultati. Non esisteva uno standard. Ogni integrazione era un caso isolato.</p><p>Il risultato era un ecosistema frammentato. I modelli non potevano riutilizzare i tool tra prodotti diversi. Gli sviluppatori non potevano condividere adattatori. I confini di sicurezza erano inconsistenti. E la complessità cresceva con ogni nuovo strumento aggiunto.</p><h2 id=cosè-mcp>Cos&rsquo;è MCP</h2><p><strong>MCP — Model Context Protocol</strong> — è un protocollo aperto pubblicato da Anthropic nel novembre 2024. Definisce un&rsquo;interfaccia di comunicazione standard tra modelli AI (client) e servizi esterni (server).</p><p>Il modello mentale è semplice: i server MCP sono plugin. Espongono <strong>risorse</strong> (dati che il modello può leggere), <strong>tool</strong> (azioni che il modello può invocare) e <strong>prompt</strong> (template di istruzioni riutilizzabili). Il modello è sempre il client; il server è sempre il fornitore di capacità.</p><h3 id=contesto-di-sistema>Contesto di sistema</h3><pre class=mermaid>C4Context
+  title Contesto di Sistema — Model Context Protocol
+
+  Person(developer, &#34;Sviluppatore&#34;, &#34;Costruisce e configura server e client MCP&#34;)
+
+  System_Boundary(mcpBoundary, &#34;Ecosistema MCP&#34;) {
+    System(aiClient, &#34;AI Client&#34;, &#34;Applicazione host LLM — Claude Desktop, IDE, agente custom&#34;)
+    System(mcpServer, &#34;MCP Server&#34;, &#34;Fornitore di capacità — espone tool, risorse e prompt via JSON-RPC 2.0&#34;)
+  }
+
+  System_Ext(filesystem, &#34;Filesystem&#34;, &#34;File e directory locali o remoti&#34;)
+  System_Ext(github, &#34;GitHub&#34;, &#34;Repository, PR, issue, ricerca codice&#34;)
+  System_Ext(database, &#34;Database&#34;, &#34;PostgreSQL, SQLite o qualsiasi store strutturato&#34;)
+  System_Ext(webapis, &#34;API Esterne&#34;, &#34;Slack, Notion, web search e altri servizi&#34;)
+
+  Rel(developer, aiClient, &#34;Configura e utilizza&#34;)
+  Rel(developer, mcpServer, &#34;Implementa e distribuisce&#34;)
+  Rel(aiClient, mcpServer, &#34;Invoca tool e recupera risorse&#34;, &#34;JSON-RPC 2.0 / stdio · HTTP&#43;SSE · WebSocket&#34;)
+  Rel(mcpServer, filesystem, &#34;Legge e scrive&#34;)
+  Rel(mcpServer, github, &#34;Interroga e gestisce&#34;)
+  Rel(mcpServer, database, &#34;Legge e scrive&#34;, &#34;SQL / driver&#34;)
+  Rel(mcpServer, webapis, &#34;Chiama&#34;, &#34;HTTPS&#34;)
+
+  UpdateLayoutConfig($c4ShapeInRow=&#34;3&#34;, $c4BoundaryInRow=&#34;1&#34;)</pre><h3 id=flusso-di-richiesta>Flusso di richiesta</h3><pre class=mermaid>C4Dynamic
+  title Dinamico — Flusso di Invocazione Tool MCP
+
+  System(aiClient, &#34;AI Client&#34;, &#34;Host LLM — Claude, agente, IDE&#34;)
+
+  System_Boundary(mcpBoundary, &#34;MCP Server&#34;) {
+    System(dispatcher, &#34;Request Dispatcher&#34;, &#34;Instrada le chiamate JSON-RPC agli handler&#34;)
+    System(toolRegistry, &#34;Tool Registry&#34;, &#34;Dichiara i tool disponibili e i loro schemi&#34;)
+    System(executor, &#34;Tool Executor&#34;, &#34;Esegue la logica del tool e applica l&#39;autorizzazione&#34;)
+  }
+
+  System_Ext(extService, &#34;Servizio Esterno&#34;, &#34;Filesystem, GitHub, DB, API...&#34;)
+
+  Rel(aiClient, dispatcher, &#34;1. initialize — negozia capacità&#34;, &#34;JSON-RPC 2.0&#34;)
+  Rel(dispatcher, toolRegistry, &#34;2. tools/list — enumera i tool disponibili&#34;)
+  Rel(toolRegistry, dispatcher, &#34;3. Restituisce schemi dei tool&#34;)
+  Rel(dispatcher, aiClient, &#34;4. Manifesto delle capacità&#34;)
+  Rel(aiClient, dispatcher, &#34;5. tools/call — invoca tool con argomenti&#34;, &#34;JSON-RPC 2.0&#34;)
+  Rel(dispatcher, executor, &#34;6. Instrada all&#39;handler&#34;)
+  Rel(executor, extService, &#34;7. Esegue sul servizio esterno&#34;)
+  Rel(extService, executor, &#34;8. Restituisce risultato&#34;)
+  Rel(executor, dispatcher, &#34;9. Risultato strutturato o errore&#34;)
+  Rel(dispatcher, aiClient, &#34;10. Risposta JSON-RPC&#34;)</pre><p>Il protocollo wire è <strong>JSON-RPC 2.0</strong>, che gira su stdio, HTTP+SSE o WebSocket a seconda del contesto di deployment. È deliberatamente semplice: significa che qualsiasi linguaggio può implementarlo, qualsiasi infrastruttura può ospitarlo, e qualsiasi modello può parlarlo.</p><h2 id=sequenza-del-protocollo>Sequenza del protocollo</h2><p>Il ciclo di vita completo di una sessione MCP — dall&rsquo;handshake al risultato del tool:</p><pre class=mermaid>sequenceDiagram
+    participant C as AI Client
+    participant S as MCP Server
+    participant E as Servizio Esterno
+
+    Note over C,S: 1. Connessione e Negoziazione Capacità
+    C-&gt;&gt;S: initialize {protocolVersion, clientInfo, capabilities}
+    S--&gt;&gt;C: {serverInfo, capabilities: {tools, resources, prompts}}
+
+    Note over C,S: 2. Discovery
+    C-&gt;&gt;S: tools/list
+    S--&gt;&gt;C: [{name, description, inputSchema}, ...]
+    C-&gt;&gt;S: resources/list
+    S--&gt;&gt;C: [{uri, name, mimeType}, ...]
+
+    Note over C,S: 3. Fetch Risorsa (contesto in sola lettura)
+    C-&gt;&gt;S: resources/read {uri}
+    S--&gt;&gt;C: {contents: [{text | blob}]}
+
+    Note over C,S: 4. Invocazione Tool (azione agente)
+    C-&gt;&gt;S: tools/call {name, arguments}
+    S-&gt;&gt;E: Esegue sul servizio esterno
+    E--&gt;&gt;S: Risultato grezzo
+    S--&gt;&gt;C: {content: [{type, text}], isError: false}
+
+    Note over C,S: 5. Streaming (tool a lunga esecuzione)
+    C-&gt;&gt;S: tools/call {name, arguments}
+    S--&gt;&gt;C: notifications/progress {risultato parziale}
+    S--&gt;&gt;C: notifications/progress {risultato parziale}
+    S--&gt;&gt;C: {content: [{type, text}], isError: false}</pre><h2 id=anatomia-del-protocollo>Anatomia del protocollo</h2><p>Un server MCP espone tre tipi primitivi:</p><p><strong>Risorse</strong> — contesto in sola lettura. Una risorsa può essere un file, una riga di database, un messaggio Slack, una PR su GitHub. Il server dichiara cosa ha; il modello decide cosa recuperare.</p><p><strong>Tool</strong> — azioni invocabili con schemi tipizzati. Quando un modello decide di invocare uno strumento, invia una chiamata JSON strutturata. Il server la esegue e restituisce un risultato. I tool sono ciò che rende i modelli agenti — trasformano il ragionamento in effetto.</p><p><strong>Prompt</strong> — template di istruzioni parametrizzati. Pensali come slash command definiti dal server: pattern riutilizzabili che il client può invocare con argomenti.</p><p>Tutti e tre vengono dichiarati attraverso un handshake di negoziazione delle capacità al momento della connessione. Il modello sa sempre esattamente cosa offre un server prima di provare a usare qualcosa.</p><h2 id=perché-i-sistemi-ai-lo-hanno-adottato>Perché i sistemi AI lo hanno adottato</h2><p>L&rsquo;argomento per l&rsquo;adozione è diretto: <strong>un&rsquo;integrazione, molti client</strong>.</p><p>Prima di MCP, se costruivi un adattatore filesystem per Claude, funzionava per Claude. Portarlo su un altro modello significava riscrivere il layer di interfaccia. Con MCP, scrivi il server una volta. Qualsiasi client compatibile con MCP può usarlo.</p><p>Per chi costruisce sistemi AI, questo è significativo. Significa:</p><ul><li><strong>Le librerie di tool sono riutilizzabili</strong> tra modelli e prodotti</li><li><strong>La sicurezza è applicata al confine del server</strong>, non dispersa tra template di prompt</li><li><strong>La discovery delle capacità è automatica</strong> — il modello negozia cosa è disponibile a runtime</li><li><strong>Lo streaming è nativo</strong> — i tool a lunga esecuzione possono inviare risultati parziali senza polling</li></ul><p>L&rsquo;effetto ecosistema si amplifica rapidamente. Una volta che esiste un server MCP per GitHub, ogni modello che parla MCP ottiene l&rsquo;integrazione con GitHub gratuitamente. Una volta che esiste un server Postgres, ogni prodotto costruito su MCP ottiene accesso a query strutturate senza lavoro personalizzato.</p><h2 id=storia-e-timeline-di-adozione>Storia e timeline di adozione</h2><ul><li><strong>Novembre 2024</strong> — Anthropic pubblica la specifica MCP e open-sourcia le implementazioni di riferimento in Python e TypeScript. Claude Desktop viene rilasciato come primo client MCP.</li><li><strong>Inizio 2025</strong> — Il catalogo community di server MCP supera le 1.000 implementazioni. Integrazioni principali: GitHub, Slack, Notion, filesystem, Docker, web search.</li><li><strong>Metà 2025</strong> — OpenAI, Google DeepMind e diversi provider di modelli open-source annunciano il supporto MCP. Il protocollo passa da Anthropic-specifico a standard de facto del settore.</li><li><strong>Fine 2025</strong> — I vendor di tooling enterprise (Atlassian, Linear, Salesforce) rilasciano server MCP di prima parte. I vendor di IDE integrano nativamente client MCP.</li><li><strong>2026</strong> — MCP è il layer di integrazione assunto per qualsiasi prodotto AI serio. Non parlarlo è ormai l&rsquo;eccezione.</li></ul><p>La velocità di adozione rispecchia la velocità con cui gli sviluppatori hanno capito che l&rsquo;alternativa — codice glue personalizzato all&rsquo;infinito — non era sostenibile.</p><h2 id=cosa-rende-un-buon-server-mcp>Cosa rende un buon server MCP</h2><p>Non tutti i server sono uguali. Un server MCP ben progettato:</p><ol><li><strong>Mantiene i tool focalizzati</strong> — uno strumento, uno scopo. Uno strumento di ricerca non dovrebbe anche scrivere.</li><li><strong>Restituisce output strutturato</strong> — JSON tipizzato, non testo libero, così il modello può ragionare sui risultati in modo affidabile.</li><li><strong>Fallisce rumorosamente</strong> — gli errori vengono restituiti come oggetti error propri, non nascosti nelle stringhe di risultato.</li><li><strong>Rispetta l&rsquo;autorizzazione</strong> — è il server, non il modello, a decidere cosa è permesso fare al chiamante.</li><li><strong>È stateless dove possibile</strong> — il contesto dovrebbe vivere nelle risorse, non nella memoria del server.</li></ol><p>Questi sono gli stessi principi che rendono buona qualsiasi API. MCP non cambia il design del software — lo applica semplicemente al layer di integrazione AI.</p><h2 id=dove-va-da-qui>Dove va da qui</h2><p>La frontiera interessante è l&rsquo;<strong>orchestrazione multi-server</strong>: una singola sessione modello che si connette a decine di server MCP simultaneamente, combinando capacità in modo dinamico. Immagina un agente di coding con accesso simultaneo al tuo codebase, GitHub, il tuo issue tracker, i log CI e la documentazione — tutto attraverso un unico protocollo.</p><p>L&rsquo;altra frontiera è la <strong>composizione server-to-server</strong>: server MCP che chiamano a loro volta altri server MCP, costruendo grafi di capacità invece di liste piatte di tool.</p><p>MCP non ha inventato l&rsquo;idea dell&rsquo;uso di tool da parte dell&rsquo;AI. L&rsquo;ha standardizzata. E nel software, la standardizzazione è di solito dove vive la vera leva.</p><hr><h2 id=per-approfondire>Per approfondire</h2><ul><li><a href=https://modelcontextprotocol.io/specification>Specifica ufficiale MCP</a> — riferimento canonico del protocollo di Anthropic</li><li><a href=https://github.com/modelcontextprotocol>Repository GitHub MCP</a> — implementazioni di riferimento in Python e TypeScript</li><li><a href=https://www.anthropic.com/news/model-context-protocol>Introduzione al Model Context Protocol</a> — post di annuncio originale di Anthropic</li><li><a href=https://www.jsonrpc.org/specification>Specifica JSON-RPC 2.0</a> — il protocollo wire su cui gira MCP</li><li><a href=https://github.com/punkpeye/awesome-mcp-servers>awesome-mcp-servers</a> — lista curata dalla community di implementazioni di server MCP</li></ul><hr><h2 id=sullautore>Sull&rsquo;autore</h2><p><strong>Ivens Signorini</strong> è un Senior Backend Engineer specializzato in sistemi distribuiti, infrastruttura AI e API ad alte prestazioni. Lavora principalmente in Go e TypeScript, costruendo sistemi che operano su larga scala. I suoi interessi tecnici includono il design dei protocolli, i pattern di concorrenza e l&rsquo;architettura delle applicazioni AI-native. Scrive su <a href=https://signorini.cloud>signorini.cloud</a>.</p></div><script type=module>
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+  </script><footer class=post-footer><a href=/it/blog/ class=back-link><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 8H3M7 4 3 8l4 4"/></svg>
+Torna al blog</a></footer></article></main><footer class=foot><div class=foot-sig><img src=/signorini-lettering.png alt=Signorini width=380 height=62></div><div class=foot-inner><span>© 2026 Ivens Signorini · signorini.cloud</span>
+<span class=right><a href=#top>Torna in cima ↑</a></span></div></footer><div id=tweaks><h4>Tweaks</h4><div class=tw-row><span class=tw-label>Accent</span><div class=swatches id=swatches></div></div><div class=tw-row><span class=tw-label>Theme</span><div class=seg id=themeSeg><button data-theme-val=dark>Dark</button>
+<button data-theme-val=light>Light</button></div></div><div class=tw-row><span class=tw-label>Headline font</span><div class=seg id=fontSeg><button data-font="'Space Grotesk', sans-serif">Grotesk</button>
+<button data-font="'IBM Plex Sans', sans-serif">Plex</button></div></div></div><script src=/js/main.min.24bf30f162ddf1adf82fe469e0b51249e47ed4d07948a67fba0fe3169d2561b2.js defer></script></body></html>
