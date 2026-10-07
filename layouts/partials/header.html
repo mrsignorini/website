@@ -19,9 +19,9 @@
             {{ $href = printf "%s#%s" $homeURL .Params.section }}
           {{ end }}
         {{ end }}
-        {{ $isBlogPage := hasPrefix $.RelPermalink (relLangURL "/blog/") }}
+        {{ $isOwnPage := and .Params.url (hasPrefix $.RelPermalink (relLangURL .Params.url)) }}
         <a href="{{ $href }}"
-          {{- if and .Params.url $isBlogPage }} class="active"{{ end -}}
+          {{- if $isOwnPage }} class="active"{{ end -}}
         ><span class="idx">{{ .Params.idx }}</span>{{ .Name }}</a>
       {{ end }}
     </nav>

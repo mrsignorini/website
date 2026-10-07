@@ -2,7 +2,7 @@
 title: "Olá, blog"
 date: 2026-06-08
 description: "Um primeiro post para verificar que o layout do blog, os estilos e o roteamento multilíngue funcionam corretamente."
-draft: false
+draft: true
 ---
 
 Bem-vindo ao blog. Este é um post de exemplo usado para verificar que o layout, a grade de cards, a visualização de leitura e a persistência do tema funcionam corretamente.

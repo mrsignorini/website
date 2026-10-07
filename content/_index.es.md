@@ -1,13 +1,13 @@
 ---
 title: "Ivens Signorini — Senior Backend Engineer"
 browser_title: "Ivens Signorini — Senior Backend Engineer"
-description: "Senior Backend Engineer con más de 20 años construyendo sistemas distribuidos para fintech, SaaS y blockchain. Go · Java · Kubernetes · AWS."
+description: "Ivens Signorini, ingeniero backend sénior en Oporto. Go, Java y Kubernetes. Proyectos, notas de ingeniería y un blog."
 
 hero_name: "Ivens"
 hero_surname: "Signorini"
 hero_role: "Senior Backend Engineer"
-hero_lede: "Más de 20 años construyendo <strong>sistemas distribuidos</strong> para fintech, SaaS &amp; blockchain — <strong>Go</strong> · <strong>Java</strong> · <strong>Kubernetes</strong> · <strong>AWS</strong>."
-hero_location: "Oporto, Portugal · Disponible en remoto Londres / UK & Europa"
+hero_lede: "Construyo backends en <strong>Go</strong> y <strong>Java</strong>, los ejecuto en <strong>Kubernetes</strong> y escribo sobre lo que falla cuando la <strong>IA</strong> llega a producción."
+hero_location: "Oporto, Portugal"
 
 about_title: "Software mantenible,<br />no solo funcional."
 about_body: |
@@ -20,5 +20,15 @@ stack_title: "Las herramientas que uso."
 experience_title: "Dos décadas entregando."
 
 contact_headline: "Hablemos."
-contact_sub: "¿Buscas contratar para un rol Senior o Staff Backend en Londres, en remoto en el UK o en cualquier parte de Europa? Me encantaría saberlo."
+contact_sub: "Un proyecto, una pregunta sobre algo que escribí, o un puesto. Lo leo todo."
+
+building_title: "Lo que estoy construyendo."
+writing_title: "Últimos artículos."
+work_title: "Disponible para proyectos B2B."
+work_body: "Acepto trabajo de backend como contratista: un servicio que hay que construir, un sistema heredado que hay que modernizar sin detenerlo, o una funcionalidad de IA que tiene que ser fiable antes de salir. En remoto, desde Oporto."
+work_points:
+  - "Backends en Go y Java"
+  - "Kubernetes en infraestructura de precio fijo"
+  - "Funcionalidades LLM con pruebas y control de costes"
+  - "Modernización de sistemas heredados"
 ---

@@ -1,13 +1,13 @@
 ---
 title: "Ivens Signorini — Senior Backend Engineer"
 browser_title: "Ivens Signorini — Senior Backend Engineer"
-description: "Senior Backend Engineer con oltre 20 anni di esperienza nella costruzione di sistemi distribuiti per fintech, SaaS e blockchain. Go · Java · Kubernetes · AWS."
+description: "Ivens Signorini, senior backend engineer a Porto. Go, Java e Kubernetes. Progetti, note di ingegneria e un blog."
 
 hero_name: "Ivens"
 hero_surname: "Signorini"
 hero_role: "Senior Backend Engineer"
-hero_lede: "Oltre 20 anni a costruire <strong>sistemi distribuiti</strong> per fintech, SaaS &amp; blockchain — <strong>Go</strong> · <strong>Java</strong> · <strong>Kubernetes</strong> · <strong>AWS</strong>."
-hero_location: "Porto, Portogallo · Disponibile da remoto Londra / UK & Europa"
+hero_lede: "Costruisco backend in <strong>Go</strong> e <strong>Java</strong>, li faccio girare su <strong>Kubernetes</strong> e scrivo di ciò che si rompe quando l'<strong>IA</strong> arriva in produzione."
+hero_location: "Porto, Portogallo"
 
 about_title: "Software manutenibile,<br />non solo funzionale."
 about_body: |
@@ -20,5 +20,15 @@ stack_title: "Gli strumenti che utilizzo."
 experience_title: "Due decenni di sviluppo."
 
 contact_headline: "Parliamoci."
-contact_sub: "Stai assumendo per un ruolo Senior o Staff Backend a Londra, da remoto nel UK o in qualsiasi parte d'Europa? Sarei felice di sentirne parlare."
+contact_sub: "Un progetto, una domanda su qualcosa che ho scritto, o un ruolo. Leggo tutto."
+
+building_title: "A cosa sto lavorando."
+writing_title: "Ultimi articoli."
+work_title: "Disponibile per progetti B2B."
+work_body: "Accetto lavori di backend come contractor: un servizio da costruire, un sistema legacy da modernizzare senza fermarlo, o una funzionalità di IA da rendere affidabile prima del rilascio. Da remoto, con base a Porto."
+work_points:
+  - "Backend in Go e Java"
+  - "Kubernetes su infrastruttura a prezzo fisso"
+  - "Funzionalità LLM con test e controllo dei costi"
+  - "Modernizzazione di sistemi legacy"
 ---

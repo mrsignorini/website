@@ -1,13 +1,13 @@
 ---
 title: "Ivens Signorini — Senior Backend Engineer"
 browser_title: "Ivens Signorini — Senior Backend Engineer"
-description: "Senior Backend Engineer with 20+ years building distributed systems for fintech, SaaS, and blockchain. Go · Java · Kubernetes · AWS. Open to remote Senior/Staff roles in London / UK & EU."
+description: "Ivens Signorini, senior backend engineer in Porto. Go, Java and Kubernetes. Projects, engineering write-ups and a blog."
 
 hero_name: "Ivens"
 hero_surname: "Signorini"
 hero_role: "Senior Backend Engineer"
-hero_lede: "20+ years building <strong>distributed systems</strong> for fintech, SaaS &amp; blockchain — <strong>Go</strong> · <strong>Java</strong> · <strong>Kubernetes</strong> · <strong>AWS</strong>."
-hero_location: "Porto, Portugal · Open to remote London / UK & EU"
+hero_lede: "I build backends in <strong>Go</strong> and <strong>Java</strong>, run them on <strong>Kubernetes</strong>, and write about what breaks when <strong>AI</strong> meets production."
+hero_location: "Porto, Portugal"
 
 about_title: "Software that's maintainable,<br />not just functional."
 about_body: |
@@ -20,5 +20,15 @@ stack_title: "The tools I reach for."
 experience_title: "Two decades, shipping."
 
 contact_headline: "Let's talk."
-contact_sub: "Hiring for a Senior or Staff Backend role in London, remote UK, or anywhere across Europe? I'd be glad to hear about it."
+contact_sub: "A project, a question about something I wrote, or a role. I read everything."
+
+building_title: "What I am building."
+writing_title: "Latest writing."
+work_title: "Available for B2B projects."
+work_body: "I take on backend work as a contractor: a service that has to be built, a legacy system that has to be modernised without stopping, or an AI feature that has to be made reliable before it ships. Remote, based in Porto."
+work_points:
+  - "Go and Java backends"
+  - "Kubernetes on fixed-price infrastructure"
+  - "LLM features with tests and cost control"
+  - "Legacy modernisation"
 ---

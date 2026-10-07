@@ -1,16 +1,16 @@
 {{ $contact := site.Data.contact }}
 <section class="section-pad wrap contact" id="contact">
-  <div class="eyebrow reveal" style="justify-content:center;"><span class="num">06</span> / {{ T "contact_eyebrow" }}</div>
+  <div class="eyebrow reveal" style="justify-content:center;"><span class="num">04</span> / {{ T "contact_eyebrow" }}</div>
   <div class="big reveal">{{ .Params.contact_headline | default "Let's talk." | safeHTML }}<br /><a href="mailto:{{ $contact.email }}">{{ $contact.email }}</a></div>
-  <p class="sub reveal d1">{{ .Params.contact_sub | default "Hiring for a Senior or Staff Backend role in London or remote across the UK? I'd be glad to hear about it." }}</p>
+  <p class="sub reveal d1">{{ .Params.contact_sub | default "A project, a question about something I wrote, or a role. I read everything." }}</p>
   <div class="contact-actions reveal d1">
-    <a href="mailto:{{ $contact.email }}?subject=Backend%20role%20%E2%80%94%20let%27s%20talk" class="btn btn-primary">
+    <a href="mailto:{{ $contact.email }}" class="btn btn-primary">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
       {{ T "email_me" }}
     </a>
-    <a href="{{ $contact.cv_url | default "/Ivens-Signorini-CV.pdf" }}" class="btn btn-ghost" download>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
-      {{ T "download_cv" }}
+    <a href="{{ relLangURL "/cv/" }}" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      {{ T "view_cv" }}
     </a>
   </div>
   <div class="contact-links reveal d2">

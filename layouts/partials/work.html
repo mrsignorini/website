@@ -1,0 +1,14 @@
+<section class="section-pad wrap" id="work">
+  <div class="eyebrow reveal"><span class="num">03</span> / {{ T "work_eyebrow" }}</div>
+  <div class="feature reveal">
+    <h3>{{ .Params.work_title | default "Available for B2B projects." | safeHTML }}</h3>
+    <p class="desc">{{ .Params.work_body | safeHTML }}</p>
+    <div class="ptags">
+      {{ range .Params.work_points }}<span class="t">{{ . }}</span>{{ end }}
+    </div>
+    <a class="visit" href="#contact">
+      {{ T "get_in_touch" }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+    </a>
+  </div>
+</section>

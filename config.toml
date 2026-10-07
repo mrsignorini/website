@@ -6,7 +6,7 @@ languageCode = "en"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 enableRobotsTXT = true
-disableKinds = ["RSS", "taxonomy", "term"]
+disableKinds = ["taxonomy", "term"]
 cleanDestinationDir = true
 disableAliases = true
 taxonomies = {}
@@ -14,12 +14,12 @@ taxonomies = {}
 [outputs]
   home = ["HTML"]
   page = ["HTML"]
-  section = ["HTML"]
+  section = ["HTML", "RSS"]
   taxonomy = ["HTML"]
   term = ["HTML"]
 
 [params]
-  description = "Senior Backend Engineer with 20+ years building distributed systems for fintech, SaaS, and blockchain. Go · Java · Kubernetes · AWS."
+  description = "Senior Backend Engineer with 20+ years building distributed systems for fintech, SaaS, and blockchain. Go · Java · Kubernetes."
 
 [languages]
   [languages.en]

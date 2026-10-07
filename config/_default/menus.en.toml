@@ -1,47 +1,39 @@
 [[main]]
-name = "about"
-identifier = "about"
+name = "building"
+identifier = "project"
 weight = 1
 [main.params]
-section = "about"
+section = "project"
 idx = "01"
 
 [[main]]
-name = "stack"
-identifier = "stack"
+name = "writing"
+identifier = "blog"
 weight = 2
 [main.params]
-section = "stack"
+url = "/blog/"
 idx = "02"
 
 [[main]]
-name = "experience"
-identifier = "experience"
+name = "work with me"
+identifier = "work"
 weight = 3
 [main.params]
-section = "experience"
+section = "work"
 idx = "03"
-
-[[main]]
-name = "building"
-identifier = "project"
-weight = 4
-[main.params]
-section = "project"
-idx = "04"
 
 [[main]]
 name = "contact"
 identifier = "contact"
-weight = 5
+weight = 4
 [main.params]
 section = "contact"
-idx = "05"
+idx = "04"
 
 [[main]]
-name = "blog"
-identifier = "blog"
-weight = 6
+name = "cv"
+identifier = "cv"
+weight = 5
 [main.params]
-url = "/blog/"
-idx = "06"
+url = "/cv/"
+idx = "05"

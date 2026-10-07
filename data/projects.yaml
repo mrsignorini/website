@@ -1,10 +1,34 @@
+- name: biidin
+  role: Engineering @ Privorum
+  tagline: Trading automation with an AI advisor
+  description: Signals arrive by webhook, run through user strategies and go out as orders to several brokers. A Go backend, a SvelteKit frontend, and an AI layer that has to be right before anything executes.
+  tags:
+    - Go
+    - Kubernetes
+    - LLM tool calling
+    - BDD and end-to-end tests
+  url: https://www.biidin.com
+  url_label: biidin.com
+
 - name: NeverGoBlank
+  role: Founder
   tagline: AI-powered interview-prep platform
-  description: A Go backend, a Wails desktop app, an MCP server wiring LLMs into a real workflow, and live LLM transcription. The full stack of decisions, from architecture to shipping — owned end to end.
+  description: A Go backend, a desktop app with a live meeting copilot, an MCP server wiring LLMs into a real workflow, and live transcription. Every decision from architecture to shipping, owned end to end.
   tags:
     - Go backend
-    - Wails desktop app
+    - Desktop app
     - MCP server
-    - LLM transcription
+    - Live transcription
   url: https://nevergoblank.com
   url_label: nevergoblank.com
+
+- name: Privorum Insights
+  role: Engineering @ Privorum
+  tagline: Write-ups of what broke in production AI
+  description: Short engineering notes from building both products. A model that answered and was thrown away, monitoring that had no callers, a retry that could never run, and what was changed each time.
+  tags:
+    - LLM reliability
+    - Evals
+    - Cost accounting
+  url: https://privorum.com/insights/
+  url_label: privorum.com/insights

@@ -5,7 +5,7 @@ other = "Contáctame"
 other = "Descargar CV"
 
 [available_status]
-other = "Disponible para roles Senior / Staff Backend"
+other = "Disponible para puestos Senior Backend · Portugal o remoto UE"
 
 [back_to_top]
 other = "Volver arriba"
@@ -32,7 +32,7 @@ other = "stack"
 other = "experiencia"
 
 [building_eyebrow]
-other = "en construcción"
+other = "construyendo"
 
 [education_eyebrow]
 other = "formación"
@@ -69,3 +69,15 @@ other = "min de lectura"
 
 [no_posts_yet]
 other = "Aún no hay artículos. Vuelve pronto."
+
+[read_blog]
+other = "Leer el blog"
+
+[view_cv]
+other = "Ver CV"
+
+[all_posts]
+other = "Todos los artículos"
+
+[work_eyebrow]
+other = "servicios"
